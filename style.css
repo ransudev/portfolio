@@ -141,19 +141,21 @@ body:not(.sidebar-collapsed) #main-content-wrapper { margin-left: 256px; }
 
 
 /* Animated Hamburger Button */
-.hamburger-button {
+#menu-button-desktop {
     position: fixed;
     top: 24px;
     left: 24px;
-    width: 30px;
-    height: 24px;
-    cursor: pointer;
     z-index: 100;
     transition: left 0.3s ease-in-out;
 }
-
+.hamburger-button {
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    position: relative;
+}
 @media (min-width: 768px) {
-    body:not(.sidebar-collapsed) .hamburger-button {
+    body:not(.sidebar-collapsed) #menu-button-desktop {
         left: calc(256px + 24px);
     }
 }
