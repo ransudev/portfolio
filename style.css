@@ -57,7 +57,7 @@ body::before {
     position: relative;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
-    font-size: 2.25rem;
+    font-size: 1.8rem;
     margin-bottom: 3rem;
     color: #ffffff;
     text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
@@ -103,6 +103,9 @@ body::before {
 @media (min-width: 768px) {
     body:not(.sidebar-collapsed) .sidebar {
         transform: translateX(0);
+    }
+    .section-title {
+        font-size: 2.25rem;
     }
 }
 
