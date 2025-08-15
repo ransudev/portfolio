@@ -1,0 +1,282 @@
+/* General body styling */
+body {
+    font-family: 'Share Tech Mono', monospace;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    overflow-x: hidden;
+}
+
+/* Background Particle Canvas */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+/* Scanlines Overlay Effect */
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.03));
+    background-size: 100% 4px, 6px 100%;
+    z-index: -1;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
+/* Mouse Follower Glow */
+.mouse-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: background 0.2s;
+    z-index: 9999;
+}
+
+/* Pixelated font class */
+.font-pixel {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* Section Title Styling */
+.section-title {
+    position: relative;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 2.25rem;
+    margin-bottom: 3rem;
+    color: #ffffff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
+}
+.section-title::before, .section-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.section-title::before {
+    left: 2px;
+    text-shadow: -2px 0 #ec0e0e;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+.section-title::after {
+    left: -2px;
+    text-shadow: -2px 0 #fa0404, 2px 2px #15ebc7;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 256px;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 50;
+}
+
+@media (min-width: 768px) {
+    body:not(.sidebar-collapsed) .sidebar {
+        transform: translateX(0);
+    }
+}
+
+.sidebar.mobile-active { transform: translateX(0); }
+body:not(.sidebar-collapsed) #main-content-wrapper { margin-left: 256px; }
+#main-content-wrapper { transition: margin-left 0.3s ease-in-out; }
+
+.sidebar-link {
+    display: block;
+    padding: 12px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+.sidebar-link:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Animated Hamburger Button */
+.hamburger-button {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 100;
+    transition: left 0.3s ease-in-out;
+}
+
+@media (min-width: 768px) {
+    body:not(.sidebar-collapsed) .hamburger-button {
+        left: calc(256px + 24px);
+    }
+}
+
+.hamburger-button span {
+    display: block; position: absolute; height: 3px; width: 100%;
+    background: #ffffff; border-radius: 3px; opacity: 1; left: 0;
+    transform: rotate(0deg); transition: .25s ease-in-out;
+}
+.hamburger-button span:nth-child(1) { top: 0px; }
+.hamburger-button span:nth-child(2) { top: 10px; }
+.hamburger-button span:nth-child(3) { top: 20px; }
+.hamburger-button.active span:nth-child(1) { top: 10px; transform: rotate(135deg); background: #cccccc; }
+.hamburger-button.active span:nth-child(2) { opacity: 0; left: -30px; }
+.hamburger-button.active span:nth-child(3) { top: 10px; transform: rotate(-135deg); background: #cccccc; }
+
+/* Overlay for mobile */
+.overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); z-index: 45; opacity: 0;
+    visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+.overlay.mobile-active { opacity: 1; visibility: visible; }
+
+/* Cyberpunk Borders and Cards */
+.cyber-border {
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.2);
+    clip-path: polygon(0% 15px, 15px 0%, 100% 0%, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0% 100%);
+}
+.cyber-card {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+.cyber-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(204, 204, 204, 0.4);
+    border-color: #cccccc;
+}
+
+/* Cyberpunk Button */
+.cyber-button {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 10px 20px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px #ffffff;
+}
+.cyber-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    color: #e0e0e0;
+}
+
+/* Text Glow Effects */
+.text-glow-cyan { text-shadow: 0 0 5px #ffffff, 0 0 8px #ffffff; }
+.text-glow-magenta { text-shadow: 0 0 5px #cccccc, 0 0 8px #cccccc; }
+
+/* Skill Item Styling */
+.skill-item {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+.skill-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* Contact Item Styling */
+.contact-item {
+    display: block;
+    padding: 16px;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+}
+.contact-item:hover {
+    background-color: rgba(204, 204, 204, 0.1);
+    border-color: #cccccc;
+    color: #cccccc;
+    box-shadow: 0 0 15px rgba(204, 204, 204, 0.5);
+}
+
+/* Footer Link Styling */
+.footer-link {
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+.footer-link:hover {
+    color: #cccccc;
+    transform: scale(1.2);
+}
+
+/* Glitch Effect for H1 */
+.glitch-wrapper { position: relative; }
+.glitch-wrapper h1 { position: relative; }
+.glitch-wrapper h1::before, .glitch-wrapper h1::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    overflow: hidden;
+}
+.glitch-wrapper h1::before {
+    left: 2px;
+    text-shadow: -2px 0 #ec0e0e;
+    animation: glitch-anim-2 1.5s infinite linear alternate-reverse;
+}
+.glitch-wrapper h1::after {
+    left: -2px;
+    text-shadow: -2px 0 #fa0404, 2px 2px #15ebc7;
+    animation: glitch-anim 1s infinite linear alternate-reverse;
+}
+
+/* Animations */
+@keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+@keyframes glitch-anim {
+    0% { clip: rect(42px, 9999px, 44px, 0); } 20% { clip: rect(12px, 9999px, 60px, 0); }
+    40% { clip: rect(33px, 9999px, 74px, 0); } 60% { clip: rect(5px, 9999px, 50px, 0); }
+    80% { clip: rect(22px, 9999px, 69px, 0); } 100% { clip: rect(40px, 9999px, 55px, 0); }
+}
+@keyframes glitch-anim-2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); } 20% { clip: rect(80px, 9999px, 120px, 0); }
+    40% { clip: rect(70px, 9999px, 110px, 0); } 60% { clip: rect(90px, 9999px, 130px, 0); }
+    80% { clip: rect(75px, 9999px, 115px, 0); } 100% { clip: rect(65px, 9999px, 105px, 0); }
+}
