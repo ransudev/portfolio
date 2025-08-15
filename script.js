@@ -124,4 +124,28 @@ document.addEventListener('DOMContentLoaded', () => {
             initParticles();
         });
     }
+
+    // 3D Avatar Hover Effect
+    const avatarContainer = document.getElementById('avatar-container');
+    if (avatarContainer) {
+        const avatarImg = avatarContainer.querySelector('img');
+        const tiltIntensity = 15;
+
+        avatarContainer.addEventListener('mousemove', (e) => {
+            const rect = avatarContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const rotateY = tiltIntensity * ((x - rect.width / 2) / (rect.width / 2));
+            const rotateX = -tiltIntensity * ((y - rect.height / 2) / (rect.height / 2));
+
+            avatarImg.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+            avatarImg.style.boxShadow = `${-rotateY}px ${rotateX}px 30px rgba(255, 255, 255, 0.2)`;
+        });
+
+        avatarContainer.addEventListener('mouseleave', () => {
+            avatarImg.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+            avatarImg.style.boxShadow = 'none';
+        });
+    }
 });
