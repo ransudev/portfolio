@@ -47,6 +47,18 @@ body::before {
     z-index: 9999;
 }
 
+/* 3D Avatar Effect */
+#avatar-container {
+    perspective: 1000px;
+    transition: transform 0.1s linear;
+}
+
+#avatar-container img {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    border-radius: 50%;
+}
+
+
 /* Pixelated font class */
 .font-pixel {
     font-family: 'Press Start 2P', cursive;
@@ -287,17 +299,30 @@ body:not(.sidebar-collapsed) #main-content-wrapper { margin-left: 256px; }
 /* Mobile-Specific Adjustments */
 @media (max-width: 767px) {
     .glitch-wrapper h1 {
-        font-size: 2.5rem; /* Smaller font for main title on mobile */
+        font-size: 2rem; /* Further reduced font size */
+        line-height: 1.2;
     }
     .section-title {
         font-size: 1.5rem; /* Smaller font for section titles on mobile */
     }
     main section {
-        padding-top: 4rem; /* Less vertical space on mobile */
-        padding-bottom: 4rem;
+        padding-top: 3rem; /* Less vertical space on mobile */
+        padding-bottom: 3rem;
     }
     .contact-item {
-        font-size: 0.65rem; /* Smaller font for contact items to prevent wrapping */
+        font-size: 0.6rem; /* Smaller font for contact items to prevent wrapping */
         padding: 12px;
+        text-align: center;
+    }
+    #avatar-container {
+        width: 128px; /* Smaller avatar on mobile */
+        height: 128px;
+    }
+    .cyber-card {
+        text-align: center;
+    }
+    .cyber-button {
+        padding: 8px 16px;
+        font-size: 0.75rem;
     }
 }
