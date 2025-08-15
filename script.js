@@ -4,9 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Lucide icons for elements that still use them
     lucide.createIcons();
 
-    // Get references to the menu buttons, sidebar, and overlay
-    const menuButtonMobile = document.getElementById('menu-button-mobile');
-    const menuButtonDesktop = document.getElementById('menu-button-desktop');
+    // Get references to the menu button, sidebar, and overlay
+    const menuButton = document.getElementById('menu-button');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const body = document.body;
@@ -15,37 +14,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth >= 768) {
         body.classList.add('sidebar-collapsed');
     } else {
-        menuButtonMobile.classList.remove('active');
+        menuButton.classList.remove('active');
     }
 
     // Function to toggle the sidebar on mobile
     const toggleMobileSidebar = () => {
         sidebar.classList.toggle('active');
         overlay.classList.toggle('active');
-        menuButtonMobile.classList.toggle('active');
+        menuButton.classList.toggle('active');
     };
 
     // Function to toggle the sidebar on desktop
     const toggleDesktopSidebar = () => {
         body.classList.toggle('sidebar-collapsed');
-        menuButtonDesktop.classList.toggle('active');
+        menuButton.classList.toggle('active');
     };
 
     // Add event listeners to buttons
-    if (sidebar && overlay) {
-        if (menuButtonMobile) {
-            menuButtonMobile.addEventListener('click', (e) => {
-                e.stopPropagation();
+    if (menuButton && sidebar && overlay) {
+        menuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (window.innerWidth < 768) {
                 toggleMobileSidebar();
-            });
-        }
-        if (menuButtonDesktop) {
-            menuButtonDesktop.addEventListener('click', (e) => {
-                e.stopPropagation();
+            } else {
                 toggleDesktopSidebar();
-            });
-        }
-        overlay.addEventListener('click', toggleMobileSidebar);
+            }
+        });
+
+        overlay.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+                toggleMobileSidebar();
+            }
+        });
     }
 
     // Get all the links within the sidebar
