@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to toggle the sidebar on mobile
     const toggleMobileSidebar = () => {
-        sidebar.classList.toggle('mobile-active');
-        overlay.classList.toggle('mobile-active');
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
         menuButton.classList.toggle('active');
     };
 
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebarLinks.forEach(link => {
         link.addEventListener('click', () => {
             // Hide the sidebar when a link is clicked (on mobile)
-            if (window.innerWidth < 768 && sidebar.classList.contains('mobile-active')) {
+            if (window.innerWidth < 768 && sidebar.classList.contains('active')) {
                 toggleMobileSidebar();
             }
         });
