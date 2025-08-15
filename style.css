@@ -283,3 +283,21 @@ body:not(.sidebar-collapsed) #main-content-wrapper { margin-left: 256px; }
     40% { clip: rect(70px, 9999px, 110px, 0); } 60% { clip: rect(90px, 9999px, 130px, 0); }
     80% { clip: rect(75px, 9999px, 115px, 0); } 100% { clip: rect(65px, 9999px, 105px, 0); }
 }
+
+/* Mobile-Specific Adjustments */
+@media (max-width: 767px) {
+    .glitch-wrapper h1 {
+        font-size: 2.5rem; /* Smaller font for main title on mobile */
+    }
+    .section-title {
+        font-size: 1.5rem; /* Smaller font for section titles on mobile */
+    }
+    main section {
+        padding-top: 4rem; /* Less vertical space on mobile */
+        padding-bottom: 4rem;
+    }
+    .contact-item {
+        font-size: 0.65rem; /* Smaller font for contact items to prevent wrapping */
+        padding: 12px;
+    }
+}
