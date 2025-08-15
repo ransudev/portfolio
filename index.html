@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ransu.dev</title>
+    <title>ransu.dev // Netrunner Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,8 +32,8 @@
         </nav>
     </aside>
 
-    <!-- Universal Menu Toggle Button -->
-    <button id="menu-button" class="hamburger-button">
+    <!-- Desktop Menu Toggle Button -->
+    <button id="menu-button-desktop" class="hamburger-button hidden md:block">
         <span></span>
         <span></span>
         <span></span>
@@ -46,7 +46,13 @@
     <div id="main-content-wrapper">
         <!-- Universal Header -->
         <header class="bg-black/50 backdrop-blur-sm sticky top-0 z-30 border-b border-cyan-500/20 h-[73px]">
-             <div class="container mx-auto px-6 h-full flex items-center justify-end">
+             <div class="container mx-auto px-6 h-full flex items-center justify-between md:justify-end">
+                <!-- Mobile Menu Button -->
+                <button id="menu-button-mobile" class="hamburger-button md:hidden">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <a href="#" class="text-xl font-pixel text-glow-cyan md:hidden">[ransu]</a>
             </div>
         </header>
@@ -71,7 +77,7 @@
             <section id="about" class="py-20">
                 <h2 class="section-title" data-text="[ ABOUT_ME ]">[ ABOUT_ME ]</h2>
                 <div class="max-w-3xl mx-auto cyber-border p-8 text-center">
-                     <p class="mb-4 text-lg leading-relaxed font-mono">// Your number one vibecoder.</p>
+                     <p class="mb-4 text-lg leading-relaxed font-mono">// Your number one viber coder.</p>
                 </div>
             </section>
 
@@ -84,7 +90,7 @@
                         <img src="https://placehold.co/400x225/000000/000000?text=" alt="Project 1" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl mb-2 font-pixel text-glow-magenta">ITC WEBSITE</h3>
-                            <a href="https://ljamaiso.github.io/ITC/" target="_blank" class="cyber-button text-xs mt-4">Execute_</a>
+                            <a href="https://itc-css.vercel.app/" target="_blank" rel="noopener noreferrer" class="cyber-button text-xs mt-4">Execute_</a>
                         </div>
                     </div>
                     <!-- Project 2 -->
@@ -113,12 +119,11 @@
                 <div class="max-w-4xl mx-auto cyber-border p-10">
                     <div class="flex flex-wrap justify-center gap-x-10 gap-y-8">
                         <div class="skill-item"><span class="text-cyan-400">JS</span> JavaScript</div>
-                        <div class="skill-item"><span class="text-cyan-400">P</span> Python</div>
-                        <div class="skill-item"><span class="text-cyan-400">S</span> Java</div>
+                        <div class="skill-item"><span class="text-cyan-400">R</span> React</div>
+                        <div class="skill-item"><span class="text-cyan-400">N</span> Node.js</div>
                         <div class="skill-item"><span class="text-cyan-400">H</span> HTML5</div>
                         <div class="skill-item"><span class="text-cyan-400">C</span> CSS3</div>
                         <div class="skill-item"><span class="text-cyan-400">S</span> SQL</div>
-                        <div class="skill-item"><span class="text-cyan-400">AI</span> Prompting</div>
                     </div>
                 </div>
             </section>
@@ -154,5 +159,3 @@
 
 </body>
 </html>
-
-
